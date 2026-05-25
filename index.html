@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tyler Horan — Platform inequality and the future of work</title>
+<meta name="description" content="Tyler Horan is a writer and researcher on platform inequality and the future of work. Lecturer at UMass Amherst." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #fafaf7;
+    --bg-tint: #f0efea;
+    --ink: #0f0f0e;
+    --ink-2: #2a2a28;
+    --ink-3: #56564f;
+    --ink-4: #8a8a82;
+    --rule: #d8d7cf;
+    --accent: #0a4d3c;
+    --accent-bright: #16a37f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.25rem 0;
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(250, 250, 247, 0.85);
+  }
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-mark {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-mark::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .nav-links a {
+    color: var(--ink-3);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 7rem 0 6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-4);
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    box-shadow: 0 0 0 4px rgba(22, 163, 127, 0.15);
+  }
+  .hero h1 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    max-width: 18ch;
+  }
+  .hero h1 .muted { color: var(--ink-4); }
+  .hero-lede {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 42em;
+  }
+
+  /* ============ SECTION SHARED ============ */
+  section { padding: 7rem 0; border-bottom: 1px solid var(--rule); }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-4);
+    letter-spacing: 0.05em;
+  }
+  .section-title {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+
+  /* ============ BOOKS ============ */
+  .book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .book {
+    display: grid;
+    grid-template-columns: 1fr 2.2fr 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    transition: background 0.2s ease;
+  }
+  .book:hover { background: var(--bg-tint); margin: 0 -1.5rem; padding: 3rem 1.5rem; }
+  .book:last-child { border-bottom: none; }
+
+  .book-left .book-index {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-4);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+  .book-publisher {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .book-title {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .book-subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--ink-3);
+    margin-bottom: 1.5rem;
+  }
+  .book-blurb {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+
+  .book-evidence {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .evidence-item {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+  }
+  .evidence-num {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+    font-feature-settings: "tnum";
+  }
+  .evidence-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-3);
+    letter-spacing: 0.03em;
+    line-height: 1.35;
+  }
+
+  /* ============ WRITING ============ */
+  .writing-empty {
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .writing-empty-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-4);
+    letter-spacing: 0.05em;
+  }
+  .writing-empty p {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .writing-empty a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+  }
+  .writing-empty a:hover { background: var(--accent); color: var(--bg); }
+
+  /* ============ RESEARCH ============ */
+  .research-intro {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 40em;
+    margin-bottom: 4rem;
+  }
+  .pub-list { list-style: none; }
+  .pub {
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .pub:last-child { border-bottom: 1px solid var(--rule); }
+  .pub-year {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink-4);
+  }
+  .pub-title {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: 1.02rem;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .pub-venue {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--ink-3);
+  }
+  .pub-cites {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-4);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .pub-cites .num { color: var(--ink); font-weight: 500; }
+  .scholar-link {
+    margin-top: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 0.2rem;
+  }
+  .scholar-link::after { content: "↗"; }
+
+  /* ============ ABOUT ============ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-portrait {
+    aspect-ratio: 4/5;
+    background: var(--bg-tint);
+    overflow: hidden;
+    position: relative;
+  }
+  .about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .about-portrait::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 70%, rgba(15, 15, 14, 0.04) 100%);
+    pointer-events: none;
+  }
+  .about-text {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .about-text p + p { margin-top: 1.25rem; }
+  .about-text strong { font-weight: 500; color: var(--ink); }
+
+  .commentary {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .commentary-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-4);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+  }
+  .commentary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+  }
+  .commentary-tags li {
+    font-family: 'Geist', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    transition: all 0.15s ease;
+  }
+  .commentary-tags li:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ============ CONTACT ============ */
+  .contact {
+    padding: 6rem 0;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+  .contact-headline {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--bg);
+    max-width: 14ch;
+  }
+  .contact-headline .accent { color: var(--accent-bright); }
+  .contact-info { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(250, 250, 247, 0.15);
+  }
+  .contact-row:last-child { border-bottom: 1px solid rgba(250, 250, 247, 0.15); }
+  .contact-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(250, 250, 247, 0.55);
+    letter-spacing: 0.05em;
+  }
+  .contact-value a {
+    font-family: 'Geist', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--bg);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .contact-value a:hover { border-bottom-color: var(--accent-bright); }
+
+  footer {
+    padding: 2rem 0;
+    background: var(--ink);
+    color: rgba(250, 250, 247, 0.4);
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .container { padding: 0 1.25rem; }
+    .hero { padding: 4rem 0 3rem; }
+    section { padding: 4rem 0; }
+    .section-head { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .book { grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 0; }
+    .book:hover { margin: 0; padding: 2.5rem 0; background: transparent; }
+    .writing-empty { grid-template-columns: 1fr; gap: 1rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-portrait { max-width: 18rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .pub { grid-template-columns: 1fr; gap: 0.4rem; }
+    .pub-cites { margin-top: 0.3rem; }
+    nav .container { flex-wrap: wrap; gap: 0.5rem; }
+    .nav-links { gap: 1.25rem; }
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.5s ease 0.1s backwards; }
+  .hero h1 { animation: fadeUp 0.6s ease 0.2s backwards; }
+  .hero-lede { animation: fadeUp 0.6s ease 0.35s backwards; }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="nav-mark">Tyler Horan</a>
+    <ul class="nav-links">
+      <li><a href="#books">Books</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span>Writer · Researcher · Lecturer at UMass Amherst</span>
+    </div>
+    <h1>Platform inequality and the future of work.</h1>
+    <p class="hero-lede">
+      I study how digital platforms are reshaping work, social life, and economic opportunity — and who gets left behind in the process. My work pairs large-scale computational analysis with deep qualitative inquiry, across three books forthcoming with Johns Hopkins, NYU Press, and Bloomsbury.
+    </p>
+  </div>
+</header>
+
+<section id="books">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">01 / BOOKS</div>
+      <h2 class="section-title">Three books on how power gets quietly rearranged.</h2>
+    </div>
+
+    <div class="book-list">
+
+      <article class="book">
+        <div class="book-left">
+          <div class="book-index">Book 01</div>
+          <div class="book-publisher">NYU Press · Forthcoming</div>
+        </div>
+        <div class="book-main">
+          <h3 class="book-title">Code and Consciousness</h3>
+          <div class="book-subtitle">How Software Engineers Construct Reality Without Knowing It</div>
+          <p class="book-blurb">A computational analysis of developer discussions reveals how engineers routinely build social and political choices into the world's infrastructure — while sincerely believing they are doing nothing of the kind. The book names this <em>professional epistemic foreclosure</em> and traces how the very properties of code harden human decisions into seemingly natural fact.</p>
+        </div>
+        <div class="book-evidence">
+          <div class="evidence-item">
+            <div class="evidence-num">643,000</div>
+            <div class="evidence-label">DEVELOPER DISCUSSIONS<br/>GITHUB + STACK OVERFLOW</div>
+          </div>
+          <div class="evidence-item">
+            <div class="evidence-num">95%</div>
+            <div class="evidence-label">FRAMED AS PURE<br/>TECHNICAL NECESSITY</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book">
+        <div class="book-left">
+          <div class="book-index">Book 02</div>
+          <div class="book-publisher">Bloomsbury · Forthcoming</div>
+        </div>
+        <div class="book-main">
+          <h3 class="book-title">Flexibility Without Freedom</h3>
+          <div class="book-subtitle">The Political Economy of Remote Work</div>
+          <p class="book-blurb">Why have 50 million American remote workers — despite spatial autonomy and acute awareness of workplace grievance — produced almost no political organizing? Drawing on three converging data sources, the book argues that remote work delivers flexibility without producing <em>freedom</em> in the political sense.</p>
+        </div>
+        <div class="book-evidence">
+          <div class="evidence-item">
+            <div class="evidence-num">2.3M</div>
+            <div class="evidence-label">REDDIT DISCUSSIONS<br/>OF REMOTE WORK</div>
+          </div>
+          <div class="evidence-item">
+            <div class="evidence-num">40</div>
+            <div class="evidence-label">IN-DEPTH<br/>INTERVIEWS</div>
+          </div>
+          <div class="evidence-item">
+            <div class="evidence-num">~0</div>
+            <div class="evidence-label">DISCURSIVE ATTENTION<br/>TO COLLECTIVE ACTION</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book">
+        <div class="book-left">
+          <div class="book-index">Book 03</div>
+          <div class="book-publisher">Johns Hopkins · Forthcoming</div>
+        </div>
+        <div class="book-main">
+          <h3 class="book-title">The Presence Dividend</h3>
+          <div class="book-subtitle">AI, Human Formation, and the Future of the University</div>
+          <p class="book-blurb">Universities face a design choice about AI — not between human teaching and machines, but between two ways of combining them. Drawing on the first wave of randomized controlled trials, a structural model for reallocating freed human hours to what only people can provide: mentorship, intellectual community, and the formation of judgment.</p>
+        </div>
+        <div class="book-evidence">
+          <div class="evidence-item">
+            <div class="evidence-num">4</div>
+            <div class="evidence-label">RCTS REVIEWED<br/>HARVARD · STANFORD · DEEPMIND · WHARTON</div>
+          </div>
+          <div class="evidence-item">
+            <div class="evidence-num">2×</div>
+            <div class="evidence-label">LEARNING GAINS WHEN<br/>DESIGN IS RIGHT</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">02 / WRITING</div>
+      <h2 class="section-title">Essays, op-eds, and public commentary.</h2>
+    </div>
+
+    <div class="writing-empty">
+      <div class="writing-empty-label">SECTION ACTIVATING<br/>THROUGH 2026</div>
+      <p>Public essays and commentary forthcoming. For media inquiries and op-ed solicitations, <a href="#contact">get in touch</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">03 / RESEARCH</div>
+      <h2 class="section-title">A computational lens on platform inequality.</h2>
+    </div>
+
+    <p class="research-intro">
+      I use large-scale platform data and computational methods to examine the unequal terrain of the digital economy: how algorithmic ranking systems shape who gets seen and paid, how gig marketplaces produce new forms of labor disparity, how social media reorganizes connection and isolation, and how the platformization of work is changing what it means to have a career.
+    </p>
+
+    <ul class="pub-list">
+      <li class="pub">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">The Effects of Urbanization and Social Media Use on Individuals' Perceived Social Isolation</div>
+          <div class="pub-venue">Online Journal of Communication and Media Technologies, 14(1)</div>
+        </div>
+        <div class="pub-cites"><span class="num">15</span> cites</div>
+      </li>
+      <li class="pub">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Multifaceted Disparities Associated with Translator Earnings: A Quantitative Study of Upwork Profiles</div>
+          <div class="pub-venue">Journal of Social Computing, 5(1)</div>
+        </div>
+        <div class="pub-cites"><span class="num">2</span> cites</div>
+      </li>
+      <li class="pub">
+        <div class="pub-year">2023</div>
+        <div>
+          <div class="pub-title">Online Ranking System Effects on Perceived Fairness: Gender, Income and Education</div>
+          <div class="pub-venue">Journal of Social Media in Society, 12(2)</div>
+        </div>
+        <div class="pub-cites"><span class="num">3</span> cites</div>
+      </li>
+      <li class="pub">
+        <div class="pub-year">2022</div>
+        <div>
+          <div class="pub-title">Meeting Up Together: Economic Embeddedness of Social Capital in America</div>
+          <div class="pub-venue">Social Sciences, 11(4)</div>
+        </div>
+        <div class="pub-cites"><span class="num">10</span> cites</div>
+      </li>
+      <li class="pub">
+        <div class="pub-year">2021</div>
+        <div>
+          <div class="pub-title">Commercial Limits to Personality: Instagram Influencers and Commoditized Content Receptivity</div>
+          <div class="pub-venue">Societies, 11(3)</div>
+        </div>
+        <div class="pub-cites"><span class="num">9</span> cites</div>
+      </li>
+      <li class="pub">
+        <div class="pub-year">2013</div>
+        <div>
+          <div class="pub-title">'Soft' versus 'Hard' News on Microblogging Networks: Semantic Analysis of Twitter Produsage</div>
+          <div class="pub-venue">Information, Communication &amp; Society, 16(1)</div>
+        </div>
+        <div class="pub-cites"><span class="num">61</span> cites</div>
+      </li>
+    </ul>
+
+    <a href="https://scholar.google.com/citations?user=nG7wE1QAAAAJ" class="scholar-link">Full publication list on Google Scholar</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">04 / ABOUT</div>
+      <h2 class="section-title">About.</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-portrait">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=nG7wE1QAAAAJ&citpid=2" alt="Tyler Horan" />
+      </div>
+      <div>
+        <div class="about-text">
+          <p>
+            Tyler Horan is a writer and researcher on platform inequality. His work examines how digital platforms — from gig marketplaces to social media to algorithmic labor systems — are reshaping work, social life, and economic opportunity, and who gets left behind in the transition.
+          </p>
+          <p>
+            He is the author of forthcoming books with <strong>Johns Hopkins University Press</strong>, <strong>NYU Press</strong>, and <strong>Bloomsbury</strong>. His peer-reviewed research has appeared in <em>Information, Communication &amp; Society</em>, <em>Social Sciences</em>, <em>Societies</em>, and the <em>Journal of Social Computing</em>, among others.
+          </p>
+          <p>
+            Horan is a lecturer in Computational Social Science at the University of Massachusetts Amherst, where he teaches social network analysis and data-driven storytelling. He holds a PhD in sociology from The New School.
+          </p>
+        </div>
+
+        <div class="commentary">
+          <div class="commentary-label">AVAILABLE FOR COMMENTARY ON</div>
+          <ul class="commentary-tags">
+            <li>Platform labor</li>
+            <li>Gig economy</li>
+            <li>Algorithmic inequality</li>
+            <li>Remote work</li>
+            <li>Social media &amp; isolation</li>
+            <li>AI in higher education</li>
+            <li>The future of work</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <h2 class="contact-headline">Press, speaking, <span class="accent">inquiries.</span></h2>
+      <div class="contact-info">
+        <div class="contact-row">
+          <span class="contact-label">EMAIL</span>
+          <span class="contact-value"><a href="mailto:tjhoran@umass.edu">tjhoran@umass.edu</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">UNIVERSITY</span>
+          <span class="contact-value"><a href="https://www.umass.edu/social-sciences/about/directory/tyler-horan">UMass Amherst · DACSS</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">SCHOLAR</span>
+          <span class="contact-value"><a href="https://scholar.google.com/citations?user=nG7wE1QAAAAJ">Google Scholar</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 Tyler Horan</div>
+    <div>SOUTH ORANGE · AMHERST</div>
+  </div>
+</footer>
+
+</body>
+</html>
