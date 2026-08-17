@@ -6,7 +6,7 @@
         <title>Tyler Horan — Platform inequality and the future of work</title>
         <meta
             name="description"
-            content="Tyler Horan is a writer and researcher on platform inequality and the future of work. Lecturer at UMass Amherst."
+            content="Tyler Horan is a writer and researcher on platform inequality and the future of work. Lecturer at UMass Amherst; board member, Creative Capital Foundation."
         />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -106,6 +106,12 @@
             }
             .nav-links a:hover {
                 color: var(--ink);
+            }
+            .nav-links a:focus-visible,
+            .scholar-link:focus-visible,
+            .contact-value a:focus-visible {
+                outline: 2px solid var(--accent-bright);
+                outline-offset: 3px;
             }
 
             /* ============ HERO ============ */
@@ -273,39 +279,6 @@
                 line-height: 1.35;
             }
 
-            /* ============ WRITING ============ */
-            .writing-empty {
-                padding: 2.5rem 0;
-                border-top: 1px solid var(--rule);
-                border-bottom: 1px solid var(--rule);
-                display: grid;
-                grid-template-columns: 1fr 2fr;
-                gap: 3rem;
-                align-items: center;
-            }
-            .writing-empty-label {
-                font-family: "Geist Mono", monospace;
-                font-size: 0.75rem;
-                color: var(--ink-4);
-                letter-spacing: 0.05em;
-            }
-            .writing-empty p {
-                font-family: "Newsreader", serif;
-                font-weight: 300;
-                font-size: 1.2rem;
-                line-height: 1.5;
-                color: var(--ink-2);
-            }
-            .writing-empty a {
-                color: var(--accent);
-                text-decoration: none;
-                border-bottom: 1px solid var(--accent);
-            }
-            .writing-empty a:hover {
-                background: var(--accent);
-                color: var(--bg);
-            }
-
             /* ============ RESEARCH ============ */
             .research-intro {
                 font-family: "Newsreader", serif;
@@ -423,18 +396,51 @@
                 color: var(--ink);
             }
 
-            .commentary {
+            /* ---- shared block used by service + commentary ---- */
+            .about-block {
                 margin-top: 3rem;
                 padding-top: 2rem;
                 border-top: 1px solid var(--rule);
             }
-            .commentary-label {
+            .block-label {
                 font-family: "Geist Mono", monospace;
                 font-size: 0.7rem;
                 color: var(--ink-4);
                 letter-spacing: 0.05em;
                 margin-bottom: 1.25rem;
             }
+
+            .service-list {
+                list-style: none;
+            }
+            .service-row {
+                display: grid;
+                grid-template-columns: 1.4fr 1fr;
+                gap: 2rem;
+                padding: 0.85rem 0;
+                border-top: 1px solid var(--rule);
+                align-items: baseline;
+            }
+            .service-row:last-child {
+                border-bottom: 1px solid var(--rule);
+            }
+            .service-org {
+                font-family: "Geist", sans-serif;
+                font-weight: 500;
+                font-size: 1rem;
+                line-height: 1.35;
+                color: var(--ink);
+                letter-spacing: -0.01em;
+            }
+            .service-role {
+                font-family: "Geist Mono", monospace;
+                font-size: 0.72rem;
+                color: var(--ink-3);
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                line-height: 1.4;
+            }
+
             .commentary-tags {
                 display: flex;
                 flex-wrap: wrap;
@@ -554,10 +560,6 @@
                     padding: 2.5rem 0;
                     background: transparent;
                 }
-                .writing-empty {
-                    grid-template-columns: 1fr;
-                    gap: 1rem;
-                }
                 .about-grid {
                     grid-template-columns: 1fr;
                     gap: 2rem;
@@ -575,6 +577,10 @@
                 }
                 .pub-cites {
                     margin-top: 0.3rem;
+                }
+                .service-row {
+                    grid-template-columns: 1fr;
+                    gap: 0.3rem;
                 }
                 nav .container {
                     flex-wrap: wrap;
@@ -605,6 +611,19 @@
             .hero-lede {
                 animation: fadeUp 0.6s ease 0.35s backwards;
             }
+
+            @media (prefers-reduced-motion: reduce) {
+                html {
+                    scroll-behavior: auto;
+                }
+                *,
+                *::before,
+                *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
         </style>
     </head>
 
@@ -614,7 +633,6 @@
                 <a href="#" class="nav-mark">Tyler Horan</a>
                 <ul class="nav-links">
                     <li><a href="#books">Books</a></li>
-                    <li><a href="#writing">Writing</a></li>
                     <li><a href="#research">Research</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -783,32 +801,10 @@
             </div>
         </section>
 
-        <section id="writing">
-            <div class="container">
-                <div class="section-head">
-                    <div class="section-num">02 / WRITING</div>
-                    <h2 class="section-title">
-                        Essays, op-eds, and public commentary.
-                    </h2>
-                </div>
-
-                <div class="writing-empty">
-                    <div class="writing-empty-label">
-                        SECTION ACTIVATING<br />THROUGH 2026
-                    </div>
-                    <p>
-                        Public essays and commentary forthcoming. For media
-                        inquiries and op-ed solicitations,
-                        <a href="#contact">get in touch</a>.
-                    </p>
-                </div>
-            </div>
-        </section>
-
         <section id="research">
             <div class="container">
                 <div class="section-head">
-                    <div class="section-num">03 / RESEARCH</div>
+                    <div class="section-num">02 / RESEARCH</div>
                     <h2 class="section-title">
                         A computational lens on platform inequality.
                     </h2>
@@ -926,7 +922,7 @@
         <section id="about">
             <div class="container">
                 <div class="section-head">
-                    <div class="section-num">04 / ABOUT</div>
+                    <div class="section-num">03 / ABOUT</div>
                     <h2 class="section-title">About.</h2>
                 </div>
 
@@ -961,12 +957,58 @@
                                 Science at the University of Massachusetts
                                 Amherst, where he teaches social network
                                 analysis and data-driven storytelling. He holds
-                                a PhD in sociology from The New School.
+                                a PhD in sociology from The New School. Through
+                                <strong>Digion</strong>, his New Jersey
+                                consultancy, he advises organizations on applied
+                                AI systems and computational research.
+                            </p>
+                            <p>
+                                He serves on the Board of Directors of the
+                                <strong>Creative Capital Foundation</strong>,
+                                which funds working artists across disciplines,
+                                and works with
+                                <strong>ForHumanity</strong> and the
+                                <strong>Center for Humane Technology</strong> on
+                                AI accountability and governance. His current
+                                book with Johns Hopkins takes up the question
+                                directly facing university boards: how
+                                institutions should govern AI in teaching and
+                                academic programs.
                             </p>
                         </div>
 
-                        <div class="commentary">
-                            <div class="commentary-label">
+                        <div class="about-block">
+                            <div class="block-label">
+                                GOVERNANCE &amp; ADVISORY
+                            </div>
+                            <ul class="service-list">
+                                <li class="service-row">
+                                    <div class="service-org">
+                                        Creative Capital Foundation
+                                    </div>
+                                    <div class="service-role">
+                                        Board of Directors
+                                    </div>
+                                </li>
+                                <li class="service-row">
+                                    <div class="service-org">ForHumanity</div>
+                                    <div class="service-role">
+                                        AI audit &amp; accountability
+                                    </div>
+                                </li>
+                                <li class="service-row">
+                                    <div class="service-org">
+                                        Center for Humane Technology
+                                    </div>
+                                    <div class="service-role">
+                                        Affiliate
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="about-block">
+                            <div class="block-label">
                                 AVAILABLE FOR COMMENTARY ON
                             </div>
                             <ul class="commentary-tags">
@@ -976,6 +1018,7 @@
                                 <li>Remote work</li>
                                 <li>Social media &amp; isolation</li>
                                 <li>AI in higher education</li>
+                                <li>AI governance</li>
                                 <li>The future of work</li>
                             </ul>
                         </div>
@@ -994,8 +1037,8 @@
                         <div class="contact-row">
                             <span class="contact-label">EMAIL</span>
                             <span class="contact-value"
-                                ><a href="mailto:tjhoran@umass.edu"
-                                    >tjhoran@umass.edu</a
+                                ><a href="mailto:tylerhoran@gmail.com"
+                                    >tylerhoran@gmail.com</a
                                 ></span
                             >
                         </div>
